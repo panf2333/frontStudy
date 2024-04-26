@@ -250,3 +250,93 @@ searchBtn.onclick = () => {
     }
 }
 
+
+function conditionalTest() {
+    let conditional = true;
+    if (conditional) {
+        console.log("True");
+    } else {
+        console.log("False");
+    }
+    let test = Boolean(false || undefined || 0 || null || '' || NaN);
+    console.log(test);
+
+
+    for (let index = 0; index < 5; index++) {
+        conditional = index;
+        switch (conditional) {
+            case 1:
+                console.log(1);
+                break;
+            case 2:
+                console.log(2);
+                break;
+            default:
+                console.log("default");
+        }
+    }
+
+    console.log(conditional === 4 ? 4 : "others");
+
+}
+
+
+function loopTest() {
+    let arr = [];
+    for (let i = 0; i < 10; i++) {
+        console.log(i);
+        arr.push(Math.random() * i);
+    }
+
+
+    for (const item of arr) {
+        console.log(item);
+    }
+
+    let newArr = arr.map((e, i, arr) => {
+        console.log(e, i, arr);
+        e += "===";
+        return e;
+    })
+    console.log(newArr);
+
+    let filterArr = arr.filter(e => e > 1);
+    console.log(filterArr);
+
+    for (let i = 0; i < 10; i++) {
+        if (i === 3) continue;
+        if (i === 5) break;
+        console.log(i);
+    }
+    let counter = 10;
+    while (counter > 0) {
+        console.log(counter--);
+    }
+
+    counter = 0;
+    console.log("do {} while");
+    do {
+        console.log(counter--);
+    } while (counter > 0)
+
+    counter = 3;
+    do {
+        console.log(counter--);
+    } while (counter > 0)
+
+
+}
+
+function hello(name = "Chris") {
+    console.log(`Hello, ${name}`);
+}
+
+function functionTest() {
+    (function () {
+        console.log("anonymous function");
+        alert("anonymous function");
+    })();
+
+    [1].map((e) => console.log(`arrow function ${e}`));
+    [1].map(e => console.log(`arrow function ${e}`));
+}
