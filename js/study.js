@@ -1,3 +1,41 @@
+document.addEventListener("DOMContentLoaded", () => {
+    displayMessage();
+    const displayMessageButton = document.querySelector("#displayMessage");
+    // displayMessageButton.addEventListener("click", displayMessage);
+    displayMessageButton.addEventListener("click", () => displayMessage("Woo, this is a different message!", "chat"))
+})
+
+function displayMessage(msgText, msgType = "warning") {
+    msgType = "";
+    const body = document.body;
+    const panel = document.createElement("div");
+    panel.setAttribute("class", "msgBox");
+    body.appendChild(panel);
+
+    const msg = document.createElement("p");
+    msg.textContent = msgText;
+    panel.appendChild(msg);
+
+    const closeBtn = document.createElement("button");
+    closeBtn.textContent = "X";
+    panel.appendChild(closeBtn);
+
+    closeBtn.addEventListener("click", () => {
+        panel.parentNode.removeChild(panel);
+    })
+
+    if (msgType === "warning") {
+        msg.style.backgroundImage = "url(../resources/warning.png)";
+        panel.style.backgroundColor = "red";
+    } else if (msgType === "chat") {
+        msg.style.backgroundImage = "url(../resources/chat.png)";
+        panel.style.backgroundColor = "aqua";
+    } else {
+        msg.style.paddingLeft = "20px"
+    }
+}
+
+
 function stringTest() {
     const single = '单引号';
     const double = "双引号";
@@ -340,3 +378,5 @@ function functionTest() {
     [1].map((e) => console.log(`arrow function ${e}`));
     [1].map(e => console.log(`arrow function ${e}`));
 }
+
+
