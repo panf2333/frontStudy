@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="clark" />
+    <meta name="description" content="This documnet is my synchronous and asynchronous practice html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>synchronousAndAsynchronous</title>
+    <link rel="stylesheet" href="../css/synchronousAndAsynchronous.css" />
+    <script src="../js/synchronousAndAsynchronous.js" defer></script>
+    <script src="../js/promiseStudy.js" defer></script>
+</head>
+
+<body>
+    <label for="quota">Number of primes:</label>
+    <input type="text" id="quota" name="quota" value="1000000" />
+
+    <button id="generate">Generate primes</button>
+    <button id="reload">Reload</button>
+    <div>
+        <textarea id="testLongRuning"
+            style="width: 400px;">Try typing in here immediately after pressing "Generate primes"</textarea>
+    </div>
+    <div id="output"></div>
+
+    <div>
+        <button id="xhr">Click to start request</button>
+        <button id="reload2">Reload2</button>
+        <pre readonly class="event-log"></pre>
+    </div>
+</body>
+
+</html>

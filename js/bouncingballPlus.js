@@ -143,8 +143,21 @@ var nowFrame = 0;
 
 function loop() {
     console.log(evilCircle);
+    if (ballsCnt === 0) {
+        stopLoop();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgb(0 0 0 /25%)";
+        ctx.fillRect(0, 0, width, height);
+        evilCircle.draw();
+        prompt(`You are champion!!!`);
+        return;
+    }
+
     ctx.fillStyle = "rgb(0 0 0 /25%)";
     ctx.fillRect(0, 0, width, height);
+
+
+
 
     for (const ball of balls) {
         if (!ball.exists) continue;
@@ -157,13 +170,6 @@ function loop() {
     evilCircle.checkBounds();
     evilCircle.collisionDetect();
 
-    if (ballsCnt === 0) {
-        prompt(`You are champion!!!`);
-        stopLoop();
-        ctx.fillStyle = "rgb(0 0 0 /25%)";
-        ctx.fillRect(0, 0, width, height);
-        return;
-    }
 
     nowFrame = requestAnimationFrame(loop);
     console.log(nowFrame);
