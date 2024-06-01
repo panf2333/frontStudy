@@ -96,7 +96,6 @@ function testPromiseAll() {
     });
 }
 
-
 function testPromiseAllReject() {
   const fetchPromise1 = fetch(
     "https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json",
@@ -139,7 +138,6 @@ function testPromiseAny() {
     });
 
 }
-
 
 function testPromiseAnyReject() {
   const fetchPromise1 = fetch(
@@ -200,7 +198,7 @@ function testAsyncAndAwaitReturn() {
     .then((data) => {
       console.log(data[0].name);
     })
-    .catch(() => {
+    .catch((error) => {
       console.error(`Could not get products: ${error}`);
     });
 }
@@ -216,4 +214,48 @@ async function fetchProducts() {
   const data = await response.json();
   return data;
 }
+
+// implement a promise based api
+const alarmName = document.querySelector("#alarmName");
+const alarmDelay = document.querySelector("#alarmDelay");
+const outputAlarm = document.querySelector("#outputAlarm");
+const setAlarmButton = document.querySelector("#set-alarm");
+const setAlarm2Button = document.querySelector("#set-alarm2");
+const setAlarm3Button = document.querySelector("#set-alarm3");
+
+function setAlarm() {
+  setTimeout(() => {
+    outputAlarm.textContent = "Wake up!";
+  }, 1000);
+}
+
+function setAlarm2(person, delay) {
+  return new Promise((resolve, reject) => {
+    console.log(delay);
+    if (delay < 0) {
+      throw new Error("Alarm delay must not be negative");
+    }
+
+    setTimeout(() => {
+      resolve(`Wake up, ${person}!`);
+    }, delay);
+  })
+}
+
+setAlarmButton.addEventListener("click", setAlarm);
+setAlarm2Button.addEventListener("click", () => {
+  setAlarm2(alarmName.value, alarmDelay.value)
+    .then((message) => { outputAlarm.textContent = message })
+    .catch((error) => { outputAlarm.textContent = `Couldn't set alarm: ${error}` });
+});
+
+setAlarm3Button.addEventListener("click", async () => {
+  try {
+    const message = await setAlarm2(alarmName.value, alarmDelay.value);
+    outputAlarm.textContent = message;
+  } catch (error) {
+    outputAlarm.textContent = `Couldn't set alarm: ${error}`;
+  }
+});
+
 
